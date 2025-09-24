@@ -371,19 +371,20 @@ h1, h2, p, ul, li, blockquote, cite, a {
     image-rendering: pixelated;
 }
 
+/*
+ * This entire block handles styles for screens up to 768px wide,
+ * which covers most tablets and mobile phones.
+ */
 @media (max-width: 768px) {
-    .book-container {
-        padding: 5px;
-    }
+    /* Set book dimensions using viewport units to make it responsive */
     .book {
         width: 90vw;
         height: 120vw;
         border-width: var(--pixel-size);
         box-shadow: 0 0 15px rgba(0,0,0,0.5);
     }
-    .book.closed {
-        transform: rotateY(-4deg) rotateX(2deg);
-    }
+
+    /* Adjust book shadow for mobile */
     .book:not(.closed) {
         box-shadow:
             -2px 2px 0 0 var(--vista-gray-8bit-dark),
@@ -391,12 +392,38 @@ h1, h2, p, ul, li, blockquote, cite, a {
             -6px 6px 0 0 var(--vista-blue-8bit-dark),
             0 0 15px rgba(0,0,0,0.5);
     }
+    
+    /* Adjust page padding and font sizes for better readability on smaller screens */
     .page {
         padding: 10px;
-        font-size: 0.9em;
-
-
+        font-size: 0.9rem;
     }
+
+    .book-title {
+        font-size: 2.5rem;
+    }
+
+    .author-name {
+        font-size: 1.2rem;
+    }
+    
+    .profile-photo-pixelated {
+        width: 120px;
+        height: 120px;
+    }
+    
+    /* This rule is crucial to make the image fit the frame properly on mobile */
+    .profile-photo-pixelated img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+    }
+    
+    h2 {
+        font-size: 1.6rem;
+    }
+}
 
 .page {
     position: absolute;
@@ -439,63 +466,17 @@ h1, h2, p, ul, li, blockquote, cite, a {
   transition: opacity 0.12s ease-in-out; /* quick fade back in after flip */
 }
 
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 15px;
-}
+.profile-photo-pixelated img {
+    /* Set the image to a size you can control */
+    width: 180px;
+    height: 180px;
 
-.form-group {
-    display: flex;
-    flex-direction: column;
-}
+    /* Center the image within its container */
+    display: block;
+    margin: 30 auto;
 
-.contact-form label {
-    font-size: 1rem;
-    color: var(--text-color-8bit);
-    margin-bottom: 5px;
-}
-
-.contact-form input,
-.contact-form textarea {
-    padding: 8px;
-    background-color: var(--vista-gray-8bit-light);
-    border: var(--pixel-size) solid var(--vista-gray-8bit-dark);
-    box-shadow: inset 0 0 0 var(--pixel-size) var(--vista-gray-8bit-light);
-    font-family: 'VT323', monospace;
-    font-size: 1rem;
-    color: var(--text-color-8bit);
-}
-
-.contact-form button {
-    padding: 10px 15px;
-    background-color: var(--vista-blue-8bit-medium);
-    color: var(--vista-gray-8bit-light);
-    border: var(--pixel-size) solid var(--vista-blue-8bit-dark);
-    font-family: 'VT323', monospace;
-    font-size: 1.2rem;
-    cursor: pointer;
-    box-shadow:
-        var(--pixel-size) var(--pixel-size) 0 var(--vista-blue-8bit-dark),
-        calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 2) 0 var(--vista-blue-8bit-accent);
-    transition: all 0.1s ease-in-out;
-}
-
-.contact-form button:hover {
-    transform: translate(1px, 1px);
-    box-shadow:
-        var(--pixel-size) var(--pixel-size) 0 var(--vista-blue-8bit-dark);
-}
-.page-content {
-    display: flex;
-    flex-direction: column; /* stack fields vertically */
-    justify-content: center; /* vertical centering */
-    align-items: center;     /* horizontal centering */
-    height: 100%;            /* ensure it fills the page */
-    width: 100%;
-    padding: 20px;           /* optional */
-    box-sizing: border-box;
+    /* Use transform to change the size */
+    transform: scale(1.9);
 }
 
 }
